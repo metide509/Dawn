@@ -62,6 +62,17 @@ function js(done) {
     ], handleError(done));
 }
 
+function jquery(done) {
+    pump([
+        src([
+            'assets/js/jquery.min.js'
+        ], { sourcemaps: true }),
+        uglify(),
+        dest('assets/built/', { sourcemaps: '.' }),
+        livereload()
+    ], handleError(done));
+}
+
 function lint(done) {
     pump([
         src(['assets/css/**/*.css', '!assets/css/vendor/*']),
@@ -94,7 +105,7 @@ const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs', 'members/**/*.hbs'
 const cssWatcher = () => watch('assets/css/**/*.css', css);
 const jsWatcher = () => watch('assets/js/**/*.js', js);
 const watcher = parallel(hbsWatcher, cssWatcher, jsWatcher);
-const build = series(css, js);
+const build = series(css, js, jquery);
 
 exports.build = build;
 exports.lint = lint;
