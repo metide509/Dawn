@@ -93,8 +93,12 @@ blockquote {
     font-weight: 700;
     font-style: italic;
     letter-spacing: -0.03rem;
-    text-align: center;
+    text-align: left;
     background-color: var(--lighter-gray-color);
+}
+
+blockquote > p {
+    margin: 0 0;
 }
 
 blockquote strong {
@@ -133,7 +137,7 @@ figcaption a {
 }
 
 pre {
-    overflow-x: scroll;
+    overflow-x: auto;
     padding: 1.6rem 2.2rem;
     color: var(--white-color);
     font-size: 1.6rem !important;
